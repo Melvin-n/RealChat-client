@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import LoginSignupForm from './components/LoginSignupForm'
+import './styles/homepage.css'
 
 const Homepage = (): JSX.Element => {
     const [loginOrSignup, setLoginOrSignup] = useState<string>("login")
@@ -15,26 +16,26 @@ const Homepage = (): JSX.Element => {
         setter(e.target.value)
     }
   return (
-    <>
-      <h1> Welcome to RealChat </h1>
-        <div className="container__homepage">
+    <div className='homepage__main'>
+        <div className="homepage__container">
+            <h1 className='homepage__header'> Welcome to RealChat </h1>
             <div className="homepage__login-signup-option">
-                <h3 className="homepage__login homepage__option" 
+                <h3 className={`homepage__login homepage__option ${loginOrSignup == "login" ? 'homepage__option-active' : ''}` } 
                 onClick={() => handleLoginOrSignupClick("login")}>
                     Login
                 </h3>
-                <h3 className="homepage__signup homepage__option"
+                <h3 className={`homepage__signup homepage__option ${loginOrSignup == "signup" ? 'homepage__option-active' : ''}` }
                 onClick={() => handleLoginOrSignupClick("signup")}>
                     Signup
                 </h3>
             </div>
             {loginOrSignup === "login" && 
-            <LoginSignupForm containerClass="homepage__login" />}
+            <LoginSignupForm containerClass="homepage__login" formType={loginOrSignup} />}
 
             {loginOrSignup === "signup" && 
-            <LoginSignupForm containerClass="homepage__signup" />}
+            <LoginSignupForm containerClass="homepage__signup" formType={loginOrSignup}/>}
         </div>
-    </>
+    </div>
   )
 }
 
