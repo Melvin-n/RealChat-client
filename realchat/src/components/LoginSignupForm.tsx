@@ -23,7 +23,7 @@ const handleSubmit = (path: string) => {
         password: password
     })
     .then((res) => {
-        setResponse(res.data)
+        setResponse(res.data.message)
     })
 }
 
